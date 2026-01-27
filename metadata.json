@@ -1,0 +1,8 @@
+{
+  "name": "OmniLens Pro",
+  "description": "Sistema de inteligência universal multimodal para análise profunda de vídeos, áudios, imagens e documentos via IA Gemini.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
