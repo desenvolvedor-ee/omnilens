@@ -36,6 +36,9 @@ export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  
+  // Hibrid Strategy State
+  const [processMode, setProcessMode] = useState<'local' | 'server'>(() => (localStorage.getItem('omni_process_mode') as any) || 'local');
 
   // Feature Flags
   const isApiPublic = false;
@@ -446,6 +449,26 @@ export default function App() {
                   placeholder="...apps.googleusercontent.com"
                   className={`w-full px-5 py-3 rounded-2xl border bg-slate-50 font-mono text-sm outline-none focus:ring-4 transition-all ${fieldErrors.client ? 'field-error ring-amber-50 border-amber-200' : 'border-slate-100 focus:ring-indigo-100'}`}
                 />
+              </div>
+
+              <div className="space-y-3">
+                <label className="text-[10px] font-black uppercase text-slate-400">Estratégia de Processamento</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <button 
+                    onClick={() => { setProcessMode('local'); localStorage.setItem('omni_process_mode', 'local'); }}
+                    className={`p-4 rounded-2xl border-2 transition-all text-left ${processMode === 'local' ? 'border-indigo-600 bg-indigo-50/50' : 'border-slate-100 bg-slate-50'}`}
+                  >
+                    <p className="text-xs font-black">📱 Local (Edge)</p>
+                    <p className="text-[9px] text-slate-500 mt-1 uppercase">Privacidade Total • Consome RAM</p>
+                  </button>
+                  <button 
+                    onClick={() => { setProcessMode('server'); localStorage.setItem('omni_process_mode', 'server'); }}
+                    className={`p-4 rounded-2xl border-2 transition-all text-left ${processMode === 'server' ? 'border-indigo-600 bg-indigo-50/50' : 'border-slate-100 bg-slate-50'}`}
+                  >
+                    <p className="text-xs font-black">☁️ Servidor (Cloud)</p>
+                    <p className="text-[9px] text-slate-500 mt-1 uppercase">Arquivos Grandes • Ultra Rápido</p>
+                  </button>
+                </div>
               </div>
 
               <div className="p-6 bg-slate-900 rounded-3xl text-white space-y-5">

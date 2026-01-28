@@ -104,18 +104,41 @@ export class GoogleDriveService {
     });
   }
 
-  private async downloadFile(fileId: string, fileName: string, mimeType: string): Promise<File> {
+  private async downloadFile(fileId: string, fileName: string, mimeType: string, onProgress?: (p: number) => void): Promise<File> {
     const response = await fetch(
       `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,
       {
         headers: { Authorization: `Bearer ${this.accessToken}` },
       }
     );
+
     if (!response.ok) {
-      if (response.status === 401) this.accessToken = null; // Token expirado
+      if (response.status === 401) this.accessToken = null;
       throw new Error('Download falhou');
     }
-    const blob = await response.blob();
+
+    // Tenta usar streaming para monitorar progresso e evitar picos de memória se o navegador suportar
+    const contentLength = response.headers.get('content-length');
+    const total = contentLength ? parseInt(contentLength, 10) : 0;
+    
+    if (!response.body || total === 0) {
+      const blob = await response.blob();
+      return new File([blob], fileName, { type: mimeType });
+    }
+
+    const reader = response.body.getReader();
+    let loaded = 0;
+    const chunks = [];
+
+    while(true) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      loaded += value.length;
+      if (onProgress) onProgress(Math.round((loaded / total) * 100));
+    }
+
+    const blob = new Blob(chunks, { type: mimeType });
     return new File([blob], fileName, { type: mimeType });
   }
 }
