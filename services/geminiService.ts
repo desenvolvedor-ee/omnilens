@@ -21,7 +21,7 @@ export const analyzeMultimodal = async (
   filename: string,
   providedApiKey?: string
 ): Promise<UniversalReport> => {
-  const apiKey = providedApiKey || (typeof process !== 'undefined' ? process.env.API_KEY : '') || '';
+  const apiKey = providedApiKey || '';
   
   if (!apiKey) {
     throw new Error("API_KEY_REQUIRED");

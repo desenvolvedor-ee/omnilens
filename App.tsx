@@ -20,11 +20,9 @@ const log = (msg: string, type: 'info' | 'error' | 'warn' | 'system' = 'info') =
 };
 
 export default function App() {
-  const getEnv = (key: string) => (typeof process !== 'undefined' ? process.env[key] : '') || '';
-
   // Config States
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem('omni_api_key') || getEnv('API_KEY'));
-  const [clientId, setClientId] = useState(() => localStorage.getItem('omni_client_id') || getEnv('GOOGLE_CLIENT_ID'));
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('omni_api_key') || '');
+  const [clientId, setClientId] = useState(() => localStorage.getItem('omni_client_id') || '');
   const [showKey, setShowKey] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<{api?: boolean, client?: boolean}>({});
   
@@ -39,17 +37,12 @@ export default function App() {
   const [copySuccess, setCopySuccess] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
-  // Feature Flags from Env
-  const isApiPublic = getEnv('API_PUBLIC_ACCESS') === 'true';
-  const turnstileEnabled = getEnv('TURNSTILE_ENABLED') === 'true';
-  const cfSiteKey = getEnv('CF_SITE_KEY');
-  const envFile = getEnv('ENV_FILE') || '.env';
-  const logsFile = getEnv('LOGS_FILE') || 'terminal';
+  // Feature Flags
+  const isApiPublic = false;
+  const turnstileEnabled = false; 
 
   useEffect(() => {
-    log(`Sistema Inicializado. Config: ${envFile}`, 'system');
-    log(`Logs direcionados para: ${logsFile}`, 'system');
-    if (turnstileEnabled && !cfSiteKey) log("ALERTA: Turnstile habilitado mas CF_SITE_KEY não informada!", 'warn');
+    log(`Sistema Inicializado`, 'system');
   }, []);
 
   const validateConfigs = (action: 'analyze' | 'drive') => {
