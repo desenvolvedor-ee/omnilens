@@ -2,32 +2,32 @@
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { UniversalReport, FileType } from "../types";
 
-// Inicialização estrita conforme as diretrizes
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 const getPromptForCategory = (category: FileType, filename: string): string => {
   const base = `Você é o OmniLens Pro, um sistema de inteligência multimodal de nível militar. Analise o arquivo "${filename}" com precisão forense.`;
   
   switch (category) {
     case 'video':
-      return `${base} Analise os frames visuais. Identifique eventos críticos, objetos em movimento, texto legível e mudanças de cena. Gere uma linha do tempo técnica.`;
+      return `${base} Analise os frames visuais. Identifique eventos críticos, objetos em movimento e texto legível.`;
     case 'audio':
-      return `${base} Transcreva o áudio com alta fidelidade. Analise a variação de tom, identifique falantes se possível e resuma os tópicos principais.`;
-    case 'image':
-      return `${base} Realize uma análise visual profunda: OCR de textos, identificação de objetos, geolocalização sugerida pelo contexto e metadados visuais.`;
-    case 'document':
-      return `${base} Realize a leitura completa. Extraia fatos, nomes próprios, datas e faça uma síntese executiva dos argumentos principais.`;
+      return `${base} Transcreva o áudio com alta fidelidade e identifique falantes.`;
     default:
-      return `${base} Realize uma análise técnica exaustiva do conteúdo fornecido.`;
+      return `${base} Realize uma análise técnica exaustiva do conteúdo.`;
   }
 };
 
 export const analyzeMultimodal = async (
   parts: any[],
   category: FileType,
-  filename: string
+  filename: string,
+  providedApiKey?: string
 ): Promise<UniversalReport> => {
-  // Uso de Gemini 3 Pro conforme solicitado para tarefas complexas
+  const apiKey = providedApiKey || (typeof process !== 'undefined' ? process.env.API_KEY : '') || '';
+  
+  if (!apiKey) {
+    throw new Error("API_KEY_REQUIRED");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   const model = 'gemini-3-pro-preview';
   const prompt = getPromptForCategory(category, filename);
 
