@@ -40,6 +40,8 @@ export default function App() {
   // Feature Flags
   const isApiPublic = false;
   const turnstileEnabled = false; 
+  const envFile = ".env.production";
+  const logsFile = "terminal";
 
   useEffect(() => {
     log(`Sistema Inicializado`, 'system');
@@ -484,6 +486,19 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* Footer Legal Links */}
+      <footer className="py-8 px-4 border-t border-slate-100 mt-auto">
+        <div className="max-w-[1920px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+            © 2026 OmniLens Pro • See through the noise
+          </p>
+          <div className="flex gap-6">
+            <a href="/PRIVACY.md" target="_blank" className="text-[10px] font-black text-slate-400 hover:text-indigo-600 uppercase tracking-widest transition-colors">Política de Privacidade</a>
+            <a href="/TERMS.md" target="_blank" className="text-[10px] font-black text-slate-400 hover:text-indigo-600 uppercase tracking-widest transition-colors">Termos de Uso</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
