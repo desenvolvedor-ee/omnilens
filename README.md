@@ -1,52 +1,49 @@
-
 # 💠 OmniLens Pro — Universal AI Intelligence
-> **A fronteira final da análise multimodal. Engine de IA forense para vídeos, áudios e arquivos ZIP.**
 
-O OmniLens Pro é um ecossistema de inteligência alimentado pelo **Gemini 2.5 Pro**. Ele permite processar volumes massivos de dados, realizar análises frame-a-frame de vídeos e extrair inteligência de documentos complexos com uma interface de elite.
+> **A fronteira final da análise multimodal. Engine de IA forense para vídeos, áudios e documentos complexos.**
 
----
-
-## 🚀 NOVIDADES DA VERSÃO 2.5
-- **Auto-Config Popup**: Se as chaves faltarem, o app abre as configurações automaticamente.
-- **Cloudflare Turnstile**: Proteção nativa contra bots no frontend.
-- **Terminal Logging**: Logs detalhados coloridos diretamente no console do desenvolvedor.
-- **ZIP Deep Scan**: Descompressão e análise automática de arquivos .zip.
+O OmniLens Pro é um ecossistema de inteligência de última geração alimentado pelo **Gemini 2.0 Flash**. Projetado para profissionais que precisam extrair inteligência de volumes massivos de dados, ele realiza análises frame-a-frame de vídeos e processa arquivos complexos com uma interface de elite e segurança reforçada.
 
 ---
 
-## 🛠️ CONFIGURAÇÃO DE AMBIENTE (ENV)
-O OmniLens Pro agora suporta metadados de ambiente avançados. Configure no seu provedor de deploy:
+## 🚀 NOVIDADES DA VERSÃO 2.5 (PRO)
 
-| Variável | Valor Exemplo | Descrição |
-| :--- | :--- | :--- |
-| `API_KEY` | `AIza...` | Chave Gemini (Obrigatória se não for Público). |
-| `GOOGLE_CLIENT_ID` | `...apps.googleusercontent.com` | ID OAuth para Google Drive. |
-| `TURNSTILE_ENABLED` | `true` | Ativa o desafio de segurança da Cloudflare. |
-| `CF_SITE_KEY` | `0x4AAAAAAA...` | Site Key do Cloudflare Turnstile. |
-| `CF_SECRET_KEY` | `0x4AAAAAAA...` | Secret Key (usada em backend/proxy). |
-| `API_PUBLIC_ACCESS` | `false` | Se `true`, não bloqueia análise por falta de key local. |
-| `ENV_FILE` | `.env.production` | Nome do arquivo de config (Informativo). |
-| `LOGS_FILE` | `terminal` | Destino dos logs (Default: `terminal`). |
+- **Gemini 2.0 Flash Engine**: Respostas ultra-rápidas e análise multimodal aprimorada.
+- **Arquitetura Zero-Leak**: Remoção de injeção de chaves no cliente para máxima segurança.
+- **Vite-Powered**: Build otimizado com esbuild para carregamento instantâneo.
+- **ZIP Deep Scan**: Descompressão e análise automática de fluxos de trabalho em lote.
+- **Interface Glassmorphism**: Design moderno, responsivo e focado em produtividade.
 
 ---
 
-## 🔐 SEGURANÇA & OAUTH
-Para que o **Google Drive** funcione corretamente:
-1. Acesse o [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
-2. Adicione a URL do seu site em **Origens JavaScript Autorizadas**.
-3. Certifique-se de que a **Google Drive API** e **Google Picker API** estão ativadas no projeto.
+## 🛠️ CONFIGURAÇÃO DE AMBIENTE
+
+O OmniLens Pro prioriza a segurança. As chaves de API devem ser inseridas diretamente na interface do usuário (armazenadas localmente no navegador) ou configuradas via segredos no provedor de deploy.
+
+| Variável | Descrição |
+| :--- | :--- |
+| `API_KEY` | Chave do Google Gemini (necessária para análise de IA). |
+| `GOOGLE_CLIENT_ID` | ID OAuth para integração com Google Drive. |
 
 ---
 
-## 📋 COMO USAR OS LOGS
-O OmniLens Pro imprime um fluxo de dados em tempo real. Para visualizar:
-1. Abra o navegador.
-2. Aperte `F12` ou `Ctrl+Shift+I`.
-3. Vá na aba **Console**.
-4. Procure pelos rótulos coloridos `[OmniLens SYSTEM]`, `[OmniLens INFO]`, etc.
+## 🔐 SEGURANÇA E PRIVACIDADE
+
+- **Local-First Keys**: Suas chaves de API são armazenadas no `localStorage` do seu navegador e nunca são enviadas para servidores de terceiros, exceto para as APIs oficiais do Google.
+- **Production Stripping**: Todos os logs de depuração e ferramentas de desenvolvedor são removidos automaticamente no build de produção.
+- **Sandboxed Execution**: O processamento de arquivos ZIP ocorre inteiramente no lado do cliente.
 
 ---
+
+## 📋 DOCUMENTAÇÃO ADICIONAL
+
+Para guias detalhados sobre como colocar o projeto no ar, consulte:
+- [Guia de Deploy (DEPLOYMENT.md)](./DEPLOYMENT.md)
+
+---
+
 ## 📄 Licença
+
 Distribuído sob a **Licença MIT**. Desenvolvido para máxima performance e estética.
 
 *OmniLens Pro: See through the noise.*
