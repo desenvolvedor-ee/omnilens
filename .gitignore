@@ -1,7 +1,6 @@
 
 # Segurança: Não incluir chaves de API e segredos
 .env
-*.env
 .env.local
 .env.*.local
 

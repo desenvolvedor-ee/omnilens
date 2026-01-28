@@ -9,6 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+      // Shim crucial para evitar Tela Branca em ambientes estáticos
+      window.process = window.process || { env: {} };
+      // Terminal Log System
+      console.log("%c[OmniLens System] %cEngine Iniciada", "color: #6366F1; font-weight: bold", "color: gray");
+    </script>
     <style>
       body {
         font-family: 'Inter', sans-serif;
@@ -30,6 +38,15 @@
         background: #e2e8f0;
         border-radius: 10px;
       }
+      .field-error {
+        border-color: #ef4444 !important;
+        animation: shake 0.5s ease-in-out;
+      }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+      }
     </style>
     <script type="importmap">
     {
@@ -43,7 +60,6 @@
       }
     }
     </script>
-    <!-- Google API Scripts -->
     <script async defer src="https://apis.google.com/js/api.js"></script>
     <script async defer src="https://accounts.google.com/gsi/client"></script>
   </head>

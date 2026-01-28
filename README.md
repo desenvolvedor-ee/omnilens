@@ -1,64 +1,52 @@
 
 # 💠 OmniLens Pro — Universal AI Intelligence
-> **A fronteira final da análise multimodal. Sinta o poder da IA forense em suas mãos.**
+> **A fronteira final da análise multimodal. Engine de IA forense para vídeos, áudios e arquivos ZIP.**
 
-O OmniLens Pro não é apenas um app; é um motor de inteligência universal alimentado pelo **Gemini 2.5 Pro**. Ele disseca vídeos, áudios, documentos e imagens, entregando relatórios que antes levariam horas de trabalho humano em questão de segundos.
-
----
-
-## 👨‍💻 O Arquiteto
-Desenvolvido com excelência por **Desenvolver EE**.
-- **Repositório Master**: [github.com/desenvolvedor-ee/omnilens](https://github.com/desenvolvedor-ee/omnilens)
-- **Engine**: React 19 + Tailwind CSS + Google GenAI SDK
+O OmniLens Pro é um ecossistema de inteligência alimentado pelo **Gemini 2.5 Pro**. Ele permite processar volumes massivos de dados, realizar análises frame-a-frame de vídeos e extrair inteligência de documentos complexos com uma interface de elite.
 
 ---
 
-## 🚀 GUIA DE DEPLOY EXTRAVAGANTE (VERCEL EDITION)
+## 🚀 NOVIDADES DA VERSÃO 2.5
+- **Auto-Config Popup**: Se as chaves faltarem, o app abre as configurações automaticamente.
+- **Cloudflare Turnstile**: Proteção nativa contra bots no frontend.
+- **Terminal Logging**: Logs detalhados coloridos diretamente no console do desenvolvedor.
+- **ZIP Deep Scan**: Descompressão e análise automática de arquivos .zip.
 
-A **Vercel** é o habitat natural do OmniLens Pro. Siga este ritual para alcançar a excelência em produção:
+---
 
-### 💎 Passo 1: O Berço de Ouro (GitHub)
-1. Crie um novo repositório **Privado** ou **Público** no seu GitHub.
-2. Faça o upload de todos os arquivos do projeto (incluindo a pasta `services`, `components` e o `index.html`).
-3. Certifique-se de que a estrutura está limpa e o `index.html` está na raiz.
+## 🛠️ CONFIGURAÇÃO DE AMBIENTE (ENV)
+O OmniLens Pro agora suporta metadados de ambiente avançados. Configure no seu provedor de deploy:
 
-### ⚡ Passo 2: A Ascensão à Vercel
-1. Acesse o [Painel da Vercel](https://vercel.com/new).
-2. Importe o repositório que você acabou de criar.
-3. No campo **Framework Preset**, selecione `Other` ou `Vite` (se estiver usando build pipeline). Como este projeto usa `index.html` com módulos ES6 nativos, a Vercel detectará automaticamente como um **Static Project**.
-
-### 🔑 Passo 3: O Sopro de Vida (Variáveis de Ambiente)
-Antes de clicar em "Deploy", abra a seção **Environment Variables**. Este é o coração do sistema:
-
-| Chave | Valor | Importância |
+| Variável | Valor Exemplo | Descrição |
 | :--- | :--- | :--- |
-| `API_KEY` | *Sua chave secreta do Gemini* | Ativa o cérebro da IA. |
-| `GOOGLE_CLIENT_ID` | *Seu ID OAuth do Google* | Permite a conexão com o Drive. |
-| `API_PUBLIC_ACCESS` | `true` | Libera o uso para usuários externos sem login Gemini. |
-
-### 🛡️ Passo 4: O Protocolo de Segurança (Google Cloud)
-Este é o passo onde a maioria falha. O Google Drive só falará com a Vercel se você autorizar:
-1. Vá ao [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
-2. Edite seu **ID do Cliente OAuth 2.0**.
-3. Em **Origens JavaScript Autorizadas**, adicione:
-   - `http://localhost:3000` (Para testes locais)
-   - `https://seu-projeto.vercel.app` (A URL que a Vercel te deu)
-4. Em **URIs de Redirecionamento Autorizados**, adicione as mesmas URLs.
-5. **Aguarde 5 minutos** (o cache do Google é real).
-
-### 🏁 Passo 5: O Grande Final
-Clique em **Deploy** na Vercel. Em menos de 30 segundos, seu OmniLens Pro estará vivo, respirando e pronto para analisar arquivos ZIP e vídeos pesados diretamente da nuvem.
+| `API_KEY` | `AIza...` | Chave Gemini (Obrigatória se não for Público). |
+| `GOOGLE_CLIENT_ID` | `...apps.googleusercontent.com` | ID OAuth para Google Drive. |
+| `TURNSTILE_ENABLED` | `true` | Ativa o desafio de segurança da Cloudflare. |
+| `CF_SITE_KEY` | `0x4AAAAAAA...` | Site Key do Cloudflare Turnstile. |
+| `CF_SECRET_KEY` | `0x4AAAAAAA...` | Secret Key (usada em backend/proxy). |
+| `API_PUBLIC_ACCESS` | `false` | Se `true`, não bloqueia análise por falta de key local. |
+| `ENV_FILE` | `.env.production` | Nome do arquivo de config (Informativo). |
+| `LOGS_FILE` | `terminal` | Destino dos logs (Default: `terminal`). |
 
 ---
 
-## 🌟 Por que OmniLens Pro?
-- **Análise Forense de Vídeo**: Captura frames automaticamente e descreve cada segundo.
-- **Transcrições Perfeitas**: Ouça o que o áudio diz e entenda o sentimento por trás das palavras.
-- **Raio-X de Documentos**: De PDFs a arquivos Markdown, nada escapa ao OCR.
-- **Poder ZIP**: Suba um arquivo comprimido e a IA extrai e analisa cada item individualmente.
+## 🔐 SEGURANÇA & OAUTH
+Para que o **Google Drive** funcione corretamente:
+1. Acesse o [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+2. Adicione a URL do seu site em **Origens JavaScript Autorizadas**.
+3. Certifique-se de que a **Google Drive API** e **Google Picker API** estão ativadas no projeto.
 
+---
+
+## 📋 COMO USAR OS LOGS
+O OmniLens Pro imprime um fluxo de dados em tempo real. Para visualizar:
+1. Abra o navegador.
+2. Aperte `F12` ou `Ctrl+Shift+I`.
+3. Vá na aba **Console**.
+4. Procure pelos rótulos coloridos `[OmniLens SYSTEM]`, `[OmniLens INFO]`, etc.
+
+---
 ## 📄 Licença
-Distribuído sob a **Licença MIT**. Sinta-se livre para clonar, evoluir e dominar o mercado de IA.
+Distribuído sob a **Licença MIT**. Desenvolvido para máxima performance e estética.
 
----
 *OmniLens Pro: See through the noise.*
