@@ -28,7 +28,7 @@ export const analyzeMultimodal = async (
   }
 
   const ai = new GoogleGenAI({ apiKey });
-  const model = 'gemini-3-pro-preview';
+  const model = 'gemini-2.0-flash';
   const prompt = getPromptForCategory(category, filename);
 
   const response: GenerateContentResponse = await ai.models.generateContent({
